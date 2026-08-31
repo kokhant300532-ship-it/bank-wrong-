@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercado Pago - Transaccional Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .editable-cell:hover {
+      background-color: #f1f5f9;
+      cursor: pointer;
+    }
+    .editable-cell:focus {
+      outline: 2px solid #0284c7;
+      background-color: #ffffff;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 font-sans text-slate-800 flex flex-col h-screen overflow-hidden">
+
+  <!-- Top Navigation Bar -->
+  <header class="bg-[#005c9e] text-white flex items-center justify-between px-5 py-2.5 shadow-md z-20">
+    <div class="flex items-center space-x-4">
+      <button class="p-1.5 hover:bg-[#004b82] rounded-lg transition">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
+      
+      <!-- Customizable Brand / Logo Container -->
+      <div id="brandContainer" class="flex items-center space-x-3 cursor-pointer">
+        <!-- Image Logo Display (Hidden by default, used when custom image is uploaded) -->
+        <img id="customLogoImg" src="" alt="Logo" class="h-8 w-auto hidden object-contain" />
+
+        <!-- Default Mercado Pago SVG Logo -->
+        <div id="defaultSvgLogo" class="flex items-center">
+          <svg class="h-8 w-auto" viewBox="0 0 220 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="25" cy="25" r="22" fill="#FFE600" />
+            <path d="M14 26.5C14 26.5 17.5 22.5 22.5 22.5C25.5 22.5 27 24 28.5 24.5C30 25 31.5 24 33 22.5C36 19.5 36.5 26.5 32.5 29.5C29.5 31.8 26 31 24.5 30C23 29 21.5 29 20 30C18 31.3 15 30 14 26.5Z" stroke="#005C9E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M17.5 24.5C19.5 21 24 20 27.5 21.5" stroke="#005C9E" stroke-width="2.2" stroke-linecap="round"/>
+            <text x="56" y="24" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="18" letter-spacing="-0.5">mercado</text>
+            <text x="56" y="38" fill="#75C5FF" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="14" letter-spacing="0">pago</text>
+          </svg>
+        </div>
+
+        <!-- Custom Text Display (Hidden by default, shown when custom text mode is used) -->
+        <div id="customTextGroup" class="leading-none hidden">
+          <span id="displayBrandTitle" class="font-extrabold text-lg tracking-tight block text-white">mercado</span>
+          <span id="displayBrandSubtitle" class="text-xs font-bold tracking-widest block text-sky-300">pago</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header Right Actions -->
+    <div class="flex items-center space-x-4 text-sm font-medium">
+      <!-- Configuración Button -->
+      <button id="openConfigBtn" class="flex items-center space-x-2 bg-[#00477a] hover:bg-[#003861] px-3.5 py-1.5 rounded-lg border border-sky-400/30 shadow-sm transition">
+        <i data-lucide="settings" class="w-4 h-4 text-sky-300"></i>
+        <span>Configuración</span>
+      </button>
+      <div class="w-8 h-8 rounded-full border-2 border-sky-300 overflow-hidden bg-slate-200 flex items-center justify-center">
+        <i data-lucide="user" class="w-5 h-5 text-slate-600"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <div class="flex flex-1 overflow-hidden">
+    
+    <!-- Left Navigation Sidebar -->
+    <aside class="w-64 bg-[#005c9e] text-white flex flex-col justify-between overflow-y-auto shrink-0 shadow-lg border-r border-sky-900/40">
+      <nav class="py-3 text-xs font-medium space-y-1">
+        <a href="#" class="flex items-center space-x-3 px-5 py-3 text-sky-100 hover:bg-[#004b82] transition">
+          <i data-lucide="user-check" class="w-4 h-4 text-sky-300"></i>
+          <span>Miembro de la Misión</span>
+        </a>
+        <a href="#" class="flex items-center space-x-3 px-5 py-3 text-sky-100 hover:bg-[#004b82] transition">
+          <i data-lucide="clipboard-list" class="w-4 h-4 text-sky-300"></i>
+          <span>Gestión de Tareas</span>
+        </a>
+        <a href="#" class="flex items-center space-x-3 px-5 py-3 text-sky-100 hover:bg-[#004b82] transition">
+          <i data-lucide="gift" class="w-4 h-4 text-sky-300"></i>
+          <span>Distribución de Bonificaciones</span>
+        </a>
+        <a href="#" class="flex items-center space-x-3 px-5 py-3 text-sky-100 hover:bg-[#004b82] transition">
+          <i data-lucide="rotate-ccw" class="w-4 h-4 text-sky-300"></i>
+          <span>Registro de Reembolsos</span>
+        </a>
+        <a href="#" class="flex items-center space-x-3 px-5 py-3 text-sky-100 hover:bg-[#004b82] transition">
+          <i data-lucide="store" class="w-4 h-4 text-sky-300"></i>
+          <span>Lista de Negocios</span>
+        </a>
+
+        <!-- Active Menu Group -->
+        <div class="pt-2">
+          <a href="#" class="flex items-center justify-between px-5 py-3 bg-[#004273] font-semibold text-white">
+            <div class="flex items-center space-x-3">
+              <i data-lucide="wallet" class="w-4 h-4 text-yellow-400"></i>
+              <span>Gestión Financiera</span>
+            </div>
+            <i data-lucide="chevron-up" class="w-4 h-4 text-sky-300"></i>
+          </a>
+          
+          <!-- Submenu -->
+          <div class="bg-[#003359] text-sky-100 text-xs">
+            <a href="#" class="block py-2.5 pl-12 hover:text-white transition">Liquidación de Demandas</a>
+            <a href="#" class="block py-2.5 pl-12 hover:text-white transition">Centro de Liquidación</a>
+            <a href="#" class="block py-2.5 pl-12 bg-slate-200 text-slate-900 font-bold">Transaccional</a>
+            <a href="#" class="block py-2.5 pl-12 hover:text-white transition">Estados Financieros</a>
+          </div>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 p-8 overflow-y-auto bg-slate-50 flex flex-col items-center">
+      <div class="bg-white rounded-xl shadow-md border border-slate-200/80 p-6 w-full max-w-6xl">
+        
+        <!-- Header Reference ID Section -->
+        <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
+          <div>
+            <h2 class="text-lg font-bold text-slate-800">Historial Transaccional</h2>
+            <p class="text-xs text-slate-400">Registros financieros y movimientos de cuenta</p>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-semibold text-slate-400 block uppercase tracking-wider">HEADER REFERENCE ID</span>
+            <div class="font-extrabold text-slate-800 text-xl tracking-wide editable-cell px-2 py-0.5 rounded" id="displayHeaderId" contenteditable="true">
+              4181528326
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="overflow-x-auto rounded-lg border border-slate-200">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-100/80 text-slate-600 text-xs font-bold uppercase tracking-wider border-b border-slate-200">
+                <th class="py-3.5 px-4">NOMBRE</th>
+                <th class="py-3.5 px-4">NOMBRE DEL BANCO</th>
+                <th class="py-3.5 px-4">CUENTA BANCARIA</th>
+                <th class="py-3.5 px-4">SALDO DE LA CUENTA</th>
+                <th class="py-3.5 px-4">ID DE MIEMBRO</th>
+                <th class="py-3.5 px-4 text-center">ACCIONES</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody" class="text-xs font-semibold text-slate-700 divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50 transition">
+                <td class="py-4 px-4 font-bold text-slate-900 editable-cell" contenteditable="true">Fátima Godínez</td>
+                <td class="py-4 px-4 font-bold text-slate-900 editable-cell" contenteditable="true">BBVA BANCOMER</td>
+                <td class="py-4 px-4 text-slate-600 font-mono editable-cell" contenteditable="true">4152314670148687</td>
+                <td class="py-4 px-4 text-slate-800 editable-cell" contenteditable="true">22038.32</td>
+                <td class="py-4 px-4 text-slate-800 font-mono editable-cell" contenteditable="true">4181528326</td>
+                <td class="py-4 px-4 text-center">
+                  <button onclick="this.closest('tr').remove()" class="text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded-md transition">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50 transition">
+                <td class="py-4 px-4 font-bold text-slate-900 editable-cell" contenteditable="true">Fátima Godínez</td>
+                <td class="py-4 px-4 font-bold text-slate-900 editable-cell" contenteditable="true">BBVA BANCOMER</td>
+                <td class="py-4 px-4 text-slate-600 font-mono editable-cell" contenteditable="true">4152314670148687</td>
+                <td class="py-4 px-4 text-slate-800 editable-cell" contenteditable="true">324.95</td>
+                <td class="py-4 px-4 text-slate-800 font-mono editable-cell" contenteditable="true">4181528326</td>
+                <td class="py-4 px-4 text-center">
+                  <button onclick="this.closest('tr').remove()" class="text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded-md transition">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Configuración Live Control Settings Modal -->
+  <div id="configModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-xl shadow-2xl border border-slate-200 w-full max-w-xl p-6 relative max-h-[90vh] overflow-y-auto">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+        <div class="flex items-center space-x-2.5">
+          <div class="p-2 bg-sky-100 rounded-lg text-sky-700">
+            <i data-lucide="sliders" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-800 text-base">Configuración (Live Control Settings)</h3>
+            <p class="text-xs text-slate-500">Dashboard အချက်အလက်နှင့် Branding များကို တိုက်ရိုက်ပြင်ဆင်ရန်</p>
+          </div>
+        </div>
+        <button id="closeConfigBtn" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body Form -->
+      <div class="py-4 space-y-4 text-xs">
+        
+        <!-- NEW: Brand Logo & Title Customization Section -->
+        <div class="bg-slate-50 p-3.5 rounded-lg border border-slate-200 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-slate-800 text-xs uppercase tracking-wider flex items-center gap-1.5">
+              <i data-lucide="image" class="w-4 h-4 text-sky-600"></i>
+              Logo & Branding Control
+            </span>
+            <button id="resetLogoBtn" class="text-sky-600 hover:underline text-[11px] font-medium">Reset Default</button>
+          </div>
+
+          <!-- Image Upload / URL Input -->
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">စိတ်ကြိုက် ပုံထည့်ရန် (Upload or Image URL)</label>
+            <div class="flex space-x-2">
+              <input type="file" id="logoFileInput" accept="image/*" class="text-xs text-slate-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100">
+            </div>
+            <input type="text" id="logoUrlInput" placeholder="သို့မဟုတ် ပုံ URL လင့်ခ်ထည့်ပါ (https://...)" class="w-full mt-2 p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none">
+          </div>
+
+          <!-- Text Customization -->
+          <div class="grid grid-cols-2 gap-3 pt-1">
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Brand Main Title</label>
+              <input type="text" id="inputBrandTitle" value="mercado" class="w-full p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none">
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Brand Subtitle</label>
+              <input type="text" id="inputBrandSubtitle" value="pago" class="w-full p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none">
+            </div>
+          </div>
+        </div>
+
+        <!-- Table Data Controls -->
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Header Reference ID</label>
+          <input type="text" id="inputHeaderId" value="4181528326" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none">
+        </div>
+        
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Nombre (အမည်)</label>
+            <input type="text" id="inputNombre" value="Fátima Godínez" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Banco (ဘဏ်အမည်)</label>
+            <input type="text" id="inputBanco" value="BBVA BANCOMER" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Cuenta (ဘဏ်အကောင့်)</label>
+            <input type="text" id="inputCuenta" value="4152314670148687" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Saldo (ပမာဏ)</label>
+            <input type="number" id="inputSaldo" value="500.00" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none">
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer Actions -->
+      <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+        <button id="clearRowsBtn" class="px-3.5 py-2 bg-red-50 text-red-600 hover:bg-red-100 text-xs font-semibold rounded-lg transition">
+          Clear Table Data
+        </button>
+        <div class="flex space-x-2">
+          <button id="updateAllBtn" class="px-3.5 py-2 bg-slate-700 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg transition">
+            Update All Rows
+          </button>
+          <button id="addRowBtn" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-lg shadow-sm transition flex items-center space-x-1">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+            <span>Add Row</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JavaScript Dynamic Functionality -->
+  <script>
+    lucide.createIcons();
+
+    // Elements
+    const openConfigBtn = document.getElementById('openConfigBtn');
+    const closeConfigBtn = document.getElementById('closeConfigBtn');
+    const configModal = document.getElementById('configModal');
+
+    // Logo & Branding Elements
+    const logoFileInput = document.getElementById('logoFileInput');
+    const logoUrlInput = document.getElementById('logoUrlInput');
+    const inputBrandTitle = document.getElementById('inputBrandTitle');
+    const inputBrandSubtitle = document.getElementById('inputBrandSubtitle');
+    const resetLogoBtn = document.getElementById('resetLogoBtn');
+
+    const defaultSvgLogo = document.getElementById('defaultSvgLogo');
+    const customLogoImg = document.getElementById('customLogoImg');
+    const customTextGroup = document.getElementById('customTextGroup');
+    const displayBrandTitle = document.getElementById('displayBrandTitle');
+    const displayBrandSubtitle = document.getElementById('displayBrandSubtitle');
+
+    // Table Elements
+    const inputHeaderId = document.getElementById('inputHeaderId');
+    const displayHeaderId = document.getElementById('displayHeaderId');
+    const addRowBtn = document.getElementById('addRowBtn');
+    const clearRowsBtn = document.getElementById('clearRowsBtn');
+    const updateAllBtn = document.getElementById('updateAllBtn');
+    const tableBody = document.getElementById('tableBody');
+
+    // Modal Display Controls
+    openConfigBtn.addEventListener('click', () => configModal.classList.remove('hidden'));
+    closeConfigBtn.addEventListener('click', () => configModal.classList.add('hidden'));
+
+    // --- Dynamic Logo & Brand Controls ---
+    // 1. Upload Local Image File
+    logoFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          customLogoImg.src = event.target.result;
+          customLogoImg.classList.remove('hidden');
+          defaultSvgLogo.classList.add('hidden');
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // 2. Image URL Input
+    logoUrlInput.addEventListener('input', (e) => {
+      const url = e.target.value.trim();
+      if (url !== '') {
+        customLogoImg.src = url;
+        customLogoImg.classList.remove('hidden');
+        defaultSvgLogo.classList.add('hidden');
+      } else if (!logoFileInput.files.length) {
+        customLogoImg.classList.add('hidden');
+        defaultSvgLogo.classList.remove('hidden');
+      }
+    });
+
+    // 3. Custom Text Title & Subtitle Sync
+    inputBrandTitle.addEventListener('input', (e) => {
+      displayBrandTitle.textContent = e.target.value || 'mercado';
+      customTextGroup.classList.remove('hidden');
+      defaultSvgLogo.classList.add('hidden');
+    });
+
+    inputBrandSubtitle.addEventListener('input', (e) => {
+      displayBrandSubtitle.textContent = e.target.value || 'pago';
+      customTextGroup.classList.remove('hidden');
+      defaultSvgLogo.classList.add('hidden');
+    });
+
+    // 4. Reset Default Mercado Pago Logo
+    resetLogoBtn.addEventListener('click', () => {
+      logoFileInput.value = '';
+      logoUrlInput.value = '';
+      inputBrandTitle.value = 'mercado';
+      inputBrandSubtitle.value = 'pago';
+      
+      customLogoImg.classList.add('hidden');
+      customTextGroup.classList.add('hidden');
+      defaultSvgLogo.classList.remove('hidden');
+      displayBrandTitle.textContent = 'mercado';
+      displayBrandSubtitle.textContent = 'pago';
+    });
+
+    // --- Table & ID Sync Controls ---
+    inputHeaderId.addEventListener('input', (e) => {
+      displayHeaderId.textContent = e.target.value || '4181528326';
+    });
+
+    addRowBtn.addEventListener('click', () => {
+      const nombre = document.getElementById('inputNombre').value || 'Fátima Godínez';
+      const banco = document.getElementById('inputBanco').value || 'BBVA BANCOMER';
+      const cuenta = document.getElementById('inputCuenta').value || '4152314670148687';
+      const saldo = parseFloat(document.getElementById('inputSaldo').value || 0).toFixed(2);
+      const memberId = inputHeaderId.value || '4181528326';
+
+      const tr = document.createElement('tr');
+      tr.className = 'hover:bg-slate-50 transition';
+      tr.innerHTML = `
+        <td class="py-4 px-4 font-bold text-slate-900 editable-cell" contenteditable="true">${nombre}</td>
+        <td class="py-4 px-4 font-bold text-slate-900 editable-cell" contenteditable="true">${banco}</td>
+        <td class="py-4 px-4 text-slate-600 font-mono editable-cell" contenteditable="true">${cuenta}</td>
+        <td class="py-4 px-4 text-slate-800 editable-cell" contenteditable="true">${saldo}</td>
+        <td class="py-4 px-4 text-slate-800 font-mono editable-cell" contenteditable="true">${memberId}</td>
+        <td class="py-4 px-4 text-center">
+          <button onclick="this.closest('tr').remove()" class="text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded-md transition">
+            <i data-lucide="trash-2" class="w-4 h-4"></i>
+          </button>
+        </td>
+      `;
+      tableBody.appendChild(tr);
+      lucide.createIcons();
+    });
+
+    updateAllBtn.addEventListener('click', () => {
+      const nombre = document.getElementById('inputNombre').value;
+      const banco = document.getElementById('inputBanco').value;
+      const cuenta = document.getElementById('inputCuenta').value;
+      const saldo = document.getElementById('inputSaldo').value;
+      const memberId = inputHeaderId.value;
+
+      const rows = tableBody.querySelectorAll('tr');
+      rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        if (cells.length >= 5) {
+          if (nombre) cells[0].textContent = nombre;
+          if (banco) cells[1].textContent = banco;
+          if (cuenta) cells[2].textContent = cuenta;
+          if (saldo) cells[3].textContent = parseFloat(saldo).toFixed(2);
+          if (memberId) cells[4].textContent = memberId;
+        }
+      });
+    });
+
+    clearRowsBtn.addEventListener('click', () => {
+      tableBody.innerHTML = '';
+    });
+  </script>
+</body>
+</html>
