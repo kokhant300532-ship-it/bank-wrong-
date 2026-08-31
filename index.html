@@ -200,7 +200,7 @@
       <!-- Modal Body Form -->
       <div class="py-4 space-y-4 text-xs">
         
-        <!-- NEW: Brand Logo & Title Customization Section -->
+        <!-- Brand Logo & Title Customization Section -->
         <div class="bg-slate-50 p-3.5 rounded-lg border border-slate-200 space-y-3">
           <div class="flex items-center justify-between">
             <span class="font-bold text-slate-800 text-xs uppercase tracking-wider flex items-center gap-1.5">
@@ -280,7 +280,7 @@
     </div>
   </div>
 
-  <!-- JavaScript Dynamic Functionality -->
+  <!-- JavaScript Dynamic Functionality (with LocalStorage) -->
   <script>
     lucide.createIcons();
 
@@ -314,6 +314,37 @@
     openConfigBtn.addEventListener('click', () => configModal.classList.remove('hidden'));
     closeConfigBtn.addEventListener('click', () => configModal.classList.add('hidden'));
 
+    // --- Load Saved Data from LocalStorage ---
+    function loadSavedData() {
+      const savedTitle = localStorage.getItem('custom_brand_title');
+      const savedSubtitle = localStorage.getItem('custom_brand_subtitle');
+      const savedLogoImg = localStorage.getItem('custom_logo_img');
+      const savedHeaderId = localStorage.getItem('custom_header_id');
+
+      if (savedHeaderId) {
+        displayHeaderId.textContent = savedHeaderId;
+        inputHeaderId.value = savedHeaderId;
+      }
+
+      if (savedLogoImg) {
+        customLogoImg.src = savedLogoImg;
+        customLogoImg.classList.remove('hidden');
+        defaultSvgLogo.classList.add('hidden');
+        customTextGroup.classList.add('hidden');
+      } else if (savedTitle || savedSubtitle) {
+        if (savedTitle) {
+          displayBrandTitle.textContent = savedTitle;
+          inputBrandTitle.value = savedTitle;
+        }
+        if (savedSubtitle) {
+          displayBrandSubtitle.textContent = savedSubtitle;
+          inputBrandSubtitle.value = savedSubtitle;
+        }
+        customTextGroup.classList.remove('hidden');
+        defaultSvgLogo.classList.add('hidden');
+      }
+    }
+
     // --- Dynamic Logo & Brand Controls ---
     // 1. Upload Local Image File
     logoFileInput.addEventListener('change', (e) => {
@@ -321,9 +352,12 @@
       if (file) {
         const reader = new FileReader();
         reader.onload = (event) => {
-          customLogoImg.src = event.target.result;
+          const base64Img = event.target.result;
+          customLogoImg.src = base64Img;
           customLogoImg.classList.remove('hidden');
           defaultSvgLogo.classList.add('hidden');
+          customTextGroup.classList.add('hidden');
+          localStorage.setItem('custom_logo_img', base64Img);
         };
         reader.readAsDataURL(file);
       }
@@ -336,23 +370,36 @@
         customLogoImg.src = url;
         customLogoImg.classList.remove('hidden');
         defaultSvgLogo.classList.add('hidden');
-      } else if (!logoFileInput.files.length) {
-        customLogoImg.classList.add('hidden');
-        defaultSvgLogo.classList.remove('hidden');
+        customTextGroup.classList.add('hidden');
+        localStorage.setItem('custom_logo_img', url);
+      } else {
+        localStorage.removeItem('custom_logo_img');
+        if (!inputBrandTitle.value && !inputBrandSubtitle.value) {
+          customLogoImg.classList.add('hidden');
+          defaultSvgLogo.classList.remove('hidden');
+        }
       }
     });
 
     // 3. Custom Text Title & Subtitle Sync
     inputBrandTitle.addEventListener('input', (e) => {
-      displayBrandTitle.textContent = e.target.value || 'mercado';
+      const val = e.target.value || 'mercado';
+      displayBrandTitle.textContent = val;
       customTextGroup.classList.remove('hidden');
       defaultSvgLogo.classList.add('hidden');
+      customLogoImg.classList.add('hidden');
+      localStorage.removeItem('custom_logo_img');
+      localStorage.setItem('custom_brand_title', val);
     });
 
     inputBrandSubtitle.addEventListener('input', (e) => {
-      displayBrandSubtitle.textContent = e.target.value || 'pago';
+      const val = e.target.value || 'pago';
+      displayBrandSubtitle.textContent = val;
       customTextGroup.classList.remove('hidden');
       defaultSvgLogo.classList.add('hidden');
+      customLogoImg.classList.add('hidden');
+      localStorage.removeItem('custom_logo_img');
+      localStorage.setItem('custom_brand_subtitle', val);
     });
 
     // 4. Reset Default Mercado Pago Logo
@@ -367,11 +414,17 @@
       defaultSvgLogo.classList.remove('hidden');
       displayBrandTitle.textContent = 'mercado';
       displayBrandSubtitle.textContent = 'pago';
+
+      localStorage.removeItem('custom_logo_img');
+      localStorage.removeItem('custom_brand_title');
+      localStorage.removeItem('custom_brand_subtitle');
     });
 
     // --- Table & ID Sync Controls ---
     inputHeaderId.addEventListener('input', (e) => {
-      displayHeaderId.textContent = e.target.value || '4181528326';
+      const val = e.target.value || '4181528326';
+      displayHeaderId.textContent = val;
+      localStorage.setItem('custom_header_id', val);
     });
 
     addRowBtn.addEventListener('click', () => {
@@ -422,6 +475,9 @@
     clearRowsBtn.addEventListener('click', () => {
       tableBody.innerHTML = '';
     });
+
+    // Page Load အချိန်တွင် local memory မှ data ပြန်ဖတ်ခြင်း
+    loadSavedData();
   </script>
 </body>
 </html>
