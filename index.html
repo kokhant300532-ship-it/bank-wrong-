@@ -20,40 +20,31 @@
 </head>
 <body class="bg-slate-100 font-sans text-slate-800 flex flex-col h-screen overflow-hidden">
 
-  <!-- Top Navigation Bar -->
   <header class="bg-[#005c9e] text-white flex items-center justify-between px-5 py-2.5 shadow-md z-20">
     <div class="flex items-center space-x-4">
       <button class="p-1.5 hover:bg-[#004b82] rounded-lg transition">
         <i data-lucide="menu" class="w-5 h-5"></i>
       </button>
       
-      <!-- Customizable Brand / Logo Container -->
-      <div id="brandContainer" class="flex items-center space-x-3 cursor-pointer">
-        <!-- Image Logo Display (Hidden by default, used when custom image is uploaded) -->
-        <img id="customLogoImg" src="" alt="Logo" class="h-8 w-auto hidden object-contain" />
+      <div id="brandContainer" class="flex items-center space-x-3">
+        <img id="customLogoImg" src="" alt="Logo" class="h-12 w-auto hidden object-contain" />
 
-        <!-- Default Mercado Pago SVG Logo -->
         <div id="defaultSvgLogo" class="flex items-center">
-          <svg class="h-8 w-auto" viewBox="0 0 220 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="h-12 w-auto" viewBox="0 0 220 50" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="25" cy="25" r="22" fill="#FFE600" />
             <path d="M14 26.5C14 26.5 17.5 22.5 22.5 22.5C25.5 22.5 27 24 28.5 24.5C30 25 31.5 24 33 22.5C36 19.5 36.5 26.5 32.5 29.5C29.5 31.8 26 31 24.5 30C23 29 21.5 29 20 30C18 31.3 15 30 14 26.5Z" stroke="#005C9E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M17.5 24.5C19.5 21 24 20 27.5 21.5" stroke="#005C9E" stroke-width="2.2" stroke-linecap="round"/>
-            <text x="56" y="24" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="18" letter-spacing="-0.5">mercado</text>
-            <text x="56" y="38" fill="#75C5FF" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="14" letter-spacing="0">pago</text>
           </svg>
         </div>
 
-        <!-- Custom Text Display (Hidden by default, shown when custom text mode is used) -->
-        <div id="customTextGroup" class="leading-none hidden">
-          <span id="displayBrandTitle" class="font-extrabold text-lg tracking-tight block text-white">mercado</span>
-          <span id="displayBrandSubtitle" class="text-xs font-bold tracking-widest block text-sky-300">pago</span>
+        <div class="leading-tight flex flex-col justify-center">
+          <span class="font-black text-xl tracking-tight block text-white uppercase">MECADO</span>
+          <span class="text-xs font-bold tracking-widest block text-sky-300 uppercase">LIBRE</span>
         </div>
       </div>
     </div>
 
-    <!-- Header Right Actions -->
     <div class="flex items-center space-x-4 text-sm font-medium">
-      <!-- Configuración Button -->
       <button id="openConfigBtn" class="flex items-center space-x-2 bg-[#00477a] hover:bg-[#003861] px-3.5 py-1.5 rounded-lg border border-sky-400/30 shadow-sm transition">
         <i data-lucide="settings" class="w-4 h-4 text-sky-300"></i>
         <span>Configuración</span>
@@ -64,10 +55,8 @@
     </div>
   </header>
 
-  <!-- Main Content Layout -->
   <div class="flex flex-1 overflow-hidden">
     
-    <!-- Left Navigation Sidebar -->
     <aside class="w-64 bg-[#005c9e] text-white flex flex-col justify-between overflow-y-auto shrink-0 shadow-lg border-r border-sky-900/40">
       <nav class="py-3 text-xs font-medium space-y-1">
         <a href="#" class="flex items-center space-x-3 px-5 py-3 text-sky-100 hover:bg-[#004b82] transition">
@@ -91,7 +80,6 @@
           <span>Lista de Negocios</span>
         </a>
 
-        <!-- Active Menu Group -->
         <div class="pt-2">
           <a href="#" class="flex items-center justify-between px-5 py-3 bg-[#004273] font-semibold text-white">
             <div class="flex items-center space-x-3">
@@ -101,7 +89,6 @@
             <i data-lucide="chevron-up" class="w-4 h-4 text-sky-300"></i>
           </a>
           
-          <!-- Submenu -->
           <div class="bg-[#003359] text-sky-100 text-xs">
             <a href="#" class="block py-2.5 pl-12 hover:text-white transition">Liquidación de Demandas</a>
             <a href="#" class="block py-2.5 pl-12 hover:text-white transition">Centro de Liquidación</a>
@@ -112,11 +99,9 @@
       </nav>
     </aside>
 
-    <!-- Main Content Container -->
     <main class="flex-1 p-8 overflow-y-auto bg-slate-50 flex flex-col items-center">
       <div class="bg-white rounded-xl shadow-md border border-slate-200/80 p-6 w-full max-w-6xl">
         
-        <!-- Header Reference ID Section -->
         <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
           <div>
             <h2 class="text-lg font-bold text-slate-800">Historial Transaccional</h2>
@@ -130,7 +115,6 @@
           </div>
         </div>
 
-        <!-- Data Table -->
         <div class="overflow-x-auto rounded-lg border border-slate-200">
           <table class="w-full text-left border-collapse">
             <thead>
@@ -177,11 +161,9 @@
 
   </div>
 
-  <!-- Configuración Live Control Settings Modal -->
   <div id="configModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 hidden">
     <div class="bg-white rounded-xl shadow-2xl border border-slate-200 w-full max-w-xl p-6 relative max-h-[90vh] overflow-y-auto">
       
-      <!-- Modal Header -->
       <div class="flex items-center justify-between pb-4 border-b border-slate-100">
         <div class="flex items-center space-x-2.5">
           <div class="p-2 bg-sky-100 rounded-lg text-sky-700">
@@ -189,7 +171,7 @@
           </div>
           <div>
             <h3 class="font-bold text-slate-800 text-base">Configuración (Live Control Settings)</h3>
-            <p class="text-xs text-slate-500">Dashboard အချက်အလက်နှင့် Branding များကို တိုက်ရိုက်ပြင်ဆင်ရန်</p>
+            <p class="text-xs text-slate-500">Dashboard အချက်အလက်နှင့် Logo ကို တိုက်ရိုက်ပြင်ဆင်ရန်</p>
           </div>
         </div>
         <button id="closeConfigBtn" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
@@ -197,42 +179,26 @@
         </button>
       </div>
 
-      <!-- Modal Body Form -->
       <div class="py-4 space-y-4 text-xs">
         
-        <!-- Brand Logo & Title Customization Section -->
         <div class="bg-slate-50 p-3.5 rounded-lg border border-slate-200 space-y-3">
           <div class="flex items-center justify-between">
             <span class="font-bold text-slate-800 text-xs uppercase tracking-wider flex items-center gap-1.5">
               <i data-lucide="image" class="w-4 h-4 text-sky-600"></i>
-              Logo & Branding Control
+              Logo Control
             </span>
-            <button id="resetLogoBtn" class="text-sky-600 hover:underline text-[11px] font-medium">Reset Default</button>
+            <button id="resetLogoBtn" class="text-sky-600 hover:underline text-[11px] font-medium">Reset Default Logo</button>
           </div>
 
-          <!-- Image Upload / URL Input -->
           <div>
-            <label class="block font-semibold text-slate-700 mb-1">စိတ်ကြိုက် ပုံထည့်ရန် (Upload or Image URL)</label>
+            <label class="block font-semibold text-slate-700 mb-1">စိတ်ကြိုက် Logo ပုံထည့်ရန် (Upload or Image URL)</label>
             <div class="flex space-x-2">
               <input type="file" id="logoFileInput" accept="image/*" class="text-xs text-slate-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100">
             </div>
             <input type="text" id="logoUrlInput" placeholder="သို့မဟုတ် ပုံ URL လင့်ခ်ထည့်ပါ (https://...)" class="w-full mt-2 p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none">
           </div>
-
-          <!-- Text Customization -->
-          <div class="grid grid-cols-2 gap-3 pt-1">
-            <div>
-              <label class="block font-semibold text-slate-700 mb-1">Brand Main Title</label>
-              <input type="text" id="inputBrandTitle" value="mercado" class="w-full p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none">
-            </div>
-            <div>
-              <label class="block font-semibold text-slate-700 mb-1">Brand Subtitle</label>
-              <input type="text" id="inputBrandSubtitle" value="pago" class="w-full p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none">
-            </div>
-          </div>
         </div>
 
-        <!-- Table Data Controls -->
         <div>
           <label class="block font-semibold text-slate-700 mb-1">Header Reference ID</label>
           <input type="text" id="inputHeaderId" value="4181528326" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none">
@@ -261,7 +227,6 @@
         </div>
       </div>
 
-      <!-- Modal Footer Actions -->
       <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
         <button id="clearRowsBtn" class="px-3.5 py-2 bg-red-50 text-red-600 hover:bg-red-100 text-xs font-semibold rounded-lg transition">
           Clear Table Data
@@ -280,27 +245,29 @@
     </div>
   </div>
 
-  <!-- JavaScript Dynamic Functionality (with LocalStorage) -->
   <script>
     lucide.createIcons();
+
+    // Tab တစ်ခုစီအတွက် သီးသန့် Unique ID သတ်မှတ်ခြင်း (Tab အချင်းချင်း မရောထွေးစေရန်)
+    if (!window.name || !window.name.startsWith('tab_session_')) {
+      window.name = 'tab_session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+    }
+    const currentTabId = window.name;
+
+    // LocalStorage Helper Keys
+    const getKey = (key) => `${currentTabId}_${key}`;
 
     // Elements
     const openConfigBtn = document.getElementById('openConfigBtn');
     const closeConfigBtn = document.getElementById('closeConfigBtn');
     const configModal = document.getElementById('configModal');
 
-    // Logo & Branding Elements
+    // Logo Control Elements
     const logoFileInput = document.getElementById('logoFileInput');
     const logoUrlInput = document.getElementById('logoUrlInput');
-    const inputBrandTitle = document.getElementById('inputBrandTitle');
-    const inputBrandSubtitle = document.getElementById('inputBrandSubtitle');
     const resetLogoBtn = document.getElementById('resetLogoBtn');
-
     const defaultSvgLogo = document.getElementById('defaultSvgLogo');
     const customLogoImg = document.getElementById('customLogoImg');
-    const customTextGroup = document.getElementById('customTextGroup');
-    const displayBrandTitle = document.getElementById('displayBrandTitle');
-    const displayBrandSubtitle = document.getElementById('displayBrandSubtitle');
 
     // Table Elements
     const inputHeaderId = document.getElementById('inputHeaderId');
@@ -314,12 +281,10 @@
     openConfigBtn.addEventListener('click', () => configModal.classList.remove('hidden'));
     closeConfigBtn.addEventListener('click', () => configModal.classList.add('hidden'));
 
-    // --- Load Saved Data from LocalStorage ---
+    // --- Load Saved Data for THIS TAB ONLY ---
     function loadSavedData() {
-      const savedTitle = localStorage.getItem('custom_brand_title');
-      const savedSubtitle = localStorage.getItem('custom_brand_subtitle');
-      const savedLogoImg = localStorage.getItem('custom_logo_img');
-      const savedHeaderId = localStorage.getItem('custom_header_id');
+      const savedLogoImg = localStorage.getItem(getKey('custom_logo_img'));
+      const savedHeaderId = localStorage.getItem(getKey('custom_header_id'));
 
       if (savedHeaderId) {
         displayHeaderId.textContent = savedHeaderId;
@@ -330,22 +295,10 @@
         customLogoImg.src = savedLogoImg;
         customLogoImg.classList.remove('hidden');
         defaultSvgLogo.classList.add('hidden');
-        customTextGroup.classList.add('hidden');
-      } else if (savedTitle || savedSubtitle) {
-        if (savedTitle) {
-          displayBrandTitle.textContent = savedTitle;
-          inputBrandTitle.value = savedTitle;
-        }
-        if (savedSubtitle) {
-          displayBrandSubtitle.textContent = savedSubtitle;
-          inputBrandSubtitle.value = savedSubtitle;
-        }
-        customTextGroup.classList.remove('hidden');
-        defaultSvgLogo.classList.add('hidden');
       }
     }
 
-    // --- Dynamic Logo & Brand Controls ---
+    // --- Dynamic Logo Controls ---
     // 1. Upload Local Image File
     logoFileInput.addEventListener('change', (e) => {
       const file = e.target.files[0];
@@ -356,8 +309,7 @@
           customLogoImg.src = base64Img;
           customLogoImg.classList.remove('hidden');
           defaultSvgLogo.classList.add('hidden');
-          customTextGroup.classList.add('hidden');
-          localStorage.setItem('custom_logo_img', base64Img);
+          localStorage.setItem(getKey('custom_logo_img'), base64Img);
         };
         reader.readAsDataURL(file);
       }
@@ -370,61 +322,28 @@
         customLogoImg.src = url;
         customLogoImg.classList.remove('hidden');
         defaultSvgLogo.classList.add('hidden');
-        customTextGroup.classList.add('hidden');
-        localStorage.setItem('custom_logo_img', url);
+        localStorage.setItem(getKey('custom_logo_img'), url);
       } else {
-        localStorage.removeItem('custom_logo_img');
-        if (!inputBrandTitle.value && !inputBrandSubtitle.value) {
-          customLogoImg.classList.add('hidden');
-          defaultSvgLogo.classList.remove('hidden');
-        }
+        localStorage.removeItem(getKey('custom_logo_img'));
+        customLogoImg.classList.add('hidden');
+        defaultSvgLogo.classList.remove('hidden');
       }
     });
 
-    // 3. Custom Text Title & Subtitle Sync
-    inputBrandTitle.addEventListener('input', (e) => {
-      const val = e.target.value || 'mercado';
-      displayBrandTitle.textContent = val;
-      customTextGroup.classList.remove('hidden');
-      defaultSvgLogo.classList.add('hidden');
-      customLogoImg.classList.add('hidden');
-      localStorage.removeItem('custom_logo_img');
-      localStorage.setItem('custom_brand_title', val);
-    });
-
-    inputBrandSubtitle.addEventListener('input', (e) => {
-      const val = e.target.value || 'pago';
-      displayBrandSubtitle.textContent = val;
-      customTextGroup.classList.remove('hidden');
-      defaultSvgLogo.classList.add('hidden');
-      customLogoImg.classList.add('hidden');
-      localStorage.removeItem('custom_logo_img');
-      localStorage.setItem('custom_brand_subtitle', val);
-    });
-
-    // 4. Reset Default Mercado Pago Logo
+    // 3. Reset Default Logo
     resetLogoBtn.addEventListener('click', () => {
       logoFileInput.value = '';
       logoUrlInput.value = '';
-      inputBrandTitle.value = 'mercado';
-      inputBrandSubtitle.value = 'pago';
-      
       customLogoImg.classList.add('hidden');
-      customTextGroup.classList.add('hidden');
       defaultSvgLogo.classList.remove('hidden');
-      displayBrandTitle.textContent = 'mercado';
-      displayBrandSubtitle.textContent = 'pago';
-
-      localStorage.removeItem('custom_logo_img');
-      localStorage.removeItem('custom_brand_title');
-      localStorage.removeItem('custom_brand_subtitle');
+      localStorage.removeItem(getKey('custom_logo_img'));
     });
 
     // --- Table & ID Sync Controls ---
     inputHeaderId.addEventListener('input', (e) => {
       const val = e.target.value || '4181528326';
       displayHeaderId.textContent = val;
-      localStorage.setItem('custom_header_id', val);
+      localStorage.setItem(getKey('custom_header_id'), val);
     });
 
     addRowBtn.addEventListener('click', () => {
@@ -476,7 +395,7 @@
       tableBody.innerHTML = '';
     });
 
-    // Page Load အချိန်တွင် local memory မှ data ပြန်ဖတ်ခြင်း
+    // Page Load အချိန်တွင် လက်ရှိ Tab ၏ သီးသန့် memory မှ data ပြန်ဖတ်ခြင်း
     loadSavedData();
   </script>
 </body>
