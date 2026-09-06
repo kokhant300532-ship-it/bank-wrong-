@@ -118,37 +118,37 @@
         <div class="overflow-x-auto rounded-lg border border-slate-200">
           <table class="w-full text-left border-collapse">
             <thead>
-              <tr class="bg-slate-100/80 text-slate-600 text-xs font-bold uppercase tracking-wider border-b border-slate-200">
-                <th class="py-3.5 px-4">NOMBRE</th>
-                <th class="py-3.5 px-4">NOMBRE DEL BANCO</th>
-                <th class="py-3.5 px-4">CUENTA BANCARIA</th>
-                <th class="py-3.5 px-4">SALDO DE LA CUENTA</th>
-                <th class="py-3.5 px-4">ID DE MIEMBRO</th>
-                <th class="py-3.5 px-4 text-center">ACCIONES</th>
+              <tr class="bg-slate-100/80 text-slate-700 text-xs font-extrabold uppercase tracking-wider border-b border-slate-200">
+                <th class="py-4 px-4">NOMBRE</th>
+                <th class="py-4 px-4">NOMBRE DEL BANCO</th>
+                <th class="py-4 px-4">CUENTA BANCARIA</th>
+                <th class="py-4 px-4">SALDO DE LA CUENTA</th>
+                <th class="py-4 px-4">ID DE MIEMBRO</th>
+                <th class="py-4 px-4 text-center">ACCIONES</th>
               </tr>
             </thead>
-            <tbody id="tableBody" class="text-xs font-semibold text-slate-700 divide-y divide-slate-100">
+            <tbody id="tableBody" class="divide-y divide-slate-200">
               <tr class="hover:bg-slate-50 transition">
-                <td class="py-4 px-4 font-bold text-slate-900 editable-cell" contenteditable="true">Fátima Godínez</td>
-                <td class="py-4 px-4 font-bold text-slate-900 editable-cell" contenteditable="true">BBVA BANCOMER</td>
-                <td class="py-4 px-4 text-slate-600 font-mono editable-cell" contenteditable="true">4152314670148687</td>
-                <td class="py-4 px-4 text-slate-800 editable-cell" contenteditable="true">22038.32</td>
-                <td class="py-4 px-4 text-slate-800 font-mono editable-cell" contenteditable="true">4181528326</td>
+                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">Fátima Godínez</td>
+                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">BBVA BANCOMER</td>
+                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">4152314670148687</td>
+                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">22038.32</td>
+                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">4181528326</td>
                 <td class="py-4 px-4 text-center">
                   <button onclick="this.closest('tr').remove()" class="text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded-md transition">
-                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    <i data-lucide="trash-2" class="w-5 h-5"></i>
                   </button>
                 </td>
               </tr>
               <tr class="hover:bg-slate-50 transition">
-                <td class="py-4 px-4 font-bold text-slate-900 editable-cell" contenteditable="true">Fátima Godínez</td>
-                <td class="py-4 px-4 font-bold text-slate-900 editable-cell" contenteditable="true">BBVA BANCOMER</td>
-                <td class="py-4 px-4 text-slate-600 font-mono editable-cell" contenteditable="true">4152314670148687</td>
-                <td class="py-4 px-4 text-slate-800 editable-cell" contenteditable="true">324.95</td>
-                <td class="py-4 px-4 text-slate-800 font-mono editable-cell" contenteditable="true">4181528326</td>
+                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">Fátima Godínez</td>
+                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">BBVA BANCOMER</td>
+                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">4152314670148687</td>
+                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">324.95</td>
+                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">4181528326</td>
                 <td class="py-4 px-4 text-center">
                   <button onclick="this.closest('tr').remove()" class="text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded-md transition">
-                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    <i data-lucide="trash-2" class="w-5 h-5"></i>
                   </button>
                 </td>
               </tr>
@@ -356,14 +356,14 @@
       const tr = document.createElement('tr');
       tr.className = 'hover:bg-slate-50 transition';
       tr.innerHTML = `
-        <td class="py-4 px-4 font-bold text-slate-900 editable-cell" contenteditable="true">${nombre}</td>
-        <td class="py-4 px-4 font-bold text-slate-900 editable-cell" contenteditable="true">${banco}</td>
-        <td class="py-4 px-4 text-slate-600 font-mono editable-cell" contenteditable="true">${cuenta}</td>
-        <td class="py-4 px-4 text-slate-800 editable-cell" contenteditable="true">${saldo}</td>
-        <td class="py-4 px-4 text-slate-800 font-mono editable-cell" contenteditable="true">${memberId}</td>
+        <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">${nombre}</td>
+        <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">${banco}</td>
+        <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">${cuenta}</td>
+        <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">${saldo}</td>
+        <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">${memberId}</td>
         <td class="py-4 px-4 text-center">
           <button onclick="this.closest('tr').remove()" class="text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded-md transition">
-            <i data-lucide="trash-2" class="w-4 h-4"></i>
+            <i data-lucide="trash-2" class="w-5 h-5"></i>
           </button>
         </td>
       `;
