@@ -20,6 +20,7 @@
 </head>
 <body class="bg-slate-100 font-sans text-slate-800 flex flex-col h-screen overflow-hidden">
 
+  <!-- HEADER -->
   <header class="bg-[#005c9e] text-white flex items-center justify-between px-5 py-2.5 shadow-md z-20">
     <div class="flex items-center space-x-4">
       <button class="p-1.5 hover:bg-[#004b82] rounded-lg transition">
@@ -44,6 +45,16 @@
       </div>
     </div>
 
+    <!-- SEARCH BAR -->
+    <div class="hidden md:flex items-center flex-1 max-w-md mx-8">
+      <div class="relative w-full">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-sky-200">
+          <i data-lucide="search" class="w-4 h-4"></i>
+        </span>
+        <input type="text" id="searchInput" value="4181528326" placeholder="Buscar por ID..." class="w-full bg-[#004b82] text-white placeholder-sky-200 text-xs font-semibold rounded-lg pl-9 pr-4 py-2 border border-sky-400/30 focus:outline-none focus:ring-2 focus:ring-sky-300">
+      </div>
+    </div>
+
     <div class="flex items-center space-x-4 text-sm font-medium">
       <button id="openConfigBtn" class="flex items-center space-x-2 bg-[#00477a] hover:bg-[#003861] px-3.5 py-1.5 rounded-lg border border-sky-400/30 shadow-sm transition">
         <i data-lucide="settings" class="w-4 h-4 text-sky-300"></i>
@@ -55,8 +66,10 @@
     </div>
   </header>
 
+  <!-- MAIN BODY -->
   <div class="flex flex-1 overflow-hidden">
     
+    <!-- SIDEBAR -->
     <aside class="w-64 bg-[#005c9e] text-white flex flex-col justify-between overflow-y-auto shrink-0 shadow-lg border-r border-sky-900/40">
       <nav class="py-3 text-xs font-medium space-y-1">
         <a href="#" class="flex items-center space-x-3 px-5 py-3 text-sky-100 hover:bg-[#004b82] transition">
@@ -99,6 +112,7 @@
       </nav>
     </aside>
 
+    <!-- CONTENT AREA -->
     <main class="flex-1 p-8 overflow-y-auto bg-slate-50 flex flex-col items-center">
       <div class="bg-white rounded-xl shadow-md border border-slate-200/80 p-6 w-full max-w-6xl">
         
@@ -109,7 +123,7 @@
           </div>
           <div class="text-right">
             <span class="text-xs font-semibold text-slate-400 block uppercase tracking-wider">HEADER REFERENCE ID</span>
-            <div class="font-extrabold text-slate-800 text-xl tracking-wide editable-cell px-2 py-0.5 rounded" id="displayHeaderId" contenteditable="true">
+            <div class="font-bold text-slate-800 text-xl tracking-wide editable-cell px-2 py-0.5 rounded" id="displayHeaderId" contenteditable="true">
               4181528326
             </div>
           </div>
@@ -118,37 +132,39 @@
         <div class="overflow-x-auto rounded-lg border border-slate-200">
           <table class="w-full text-left border-collapse">
             <thead>
-              <tr class="bg-slate-100/80 text-slate-700 text-xs font-extrabold uppercase tracking-wider border-b border-slate-200">
-                <th class="py-4 px-4">NOMBRE</th>
-                <th class="py-4 px-4">NOMBRE DEL BANCO</th>
-                <th class="py-4 px-4">CUENTA BANCARIA</th>
-                <th class="py-4 px-4">SALDO DE LA CUENTA</th>
-                <th class="py-4 px-4">ID DE MIEMBRO</th>
-                <th class="py-4 px-4 text-center">ACCIONES</th>
+              <!-- ခေါင်းစဉ် စာသားများကို ပိုမိုထင်ရှား အနက်ရောင်သန်းစေရန် ပြင်ဆင်ထားပါသည် -->
+              <tr class="bg-slate-100/90 text-slate-800 text-xs font-extrabold uppercase tracking-wider border-b-2 border-slate-200">
+                <th class="py-3.5 px-4">NOMBRE</th>
+                <th class="py-3.5 px-4">NOMBRE DEL BANCO</th>
+                <th class="py-3.5 px-4">CUENTA BANCARIA</th>
+                <th class="py-3.5 px-4">SALDO DE LA CUENTA</th>
+                <th class="py-3.5 px-4">ID DE MIEMBRO</th>
+                <th class="py-3.5 px-4 text-center">ACCIONES</th>
               </tr>
             </thead>
-            <tbody id="tableBody" class="divide-y divide-slate-200">
+            <!-- ဇယားအတွင်းရှိ အချက်အလက်များကို ထင်ရှားစေရန် font-semibold နှင့် text-slate-700 အဖြစ် ပြောင်းလဲထားပါသည် -->
+            <tbody id="tableBody" class="divide-y divide-slate-200 text-xs font-semibold text-slate-700">
               <tr class="hover:bg-slate-50 transition">
-                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">Fátima Godínez</td>
-                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">BBVA BANCOMER</td>
-                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">4152314670148687</td>
-                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">22038.32</td>
-                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">4181528326</td>
+                <td class="py-4 px-4 editable-cell" contenteditable="true">Fátima Godínez</td>
+                <td class="py-4 px-4 editable-cell" contenteditable="true">BBVA BANCOMER</td>
+                <td class="py-4 px-4 editable-cell" contenteditable="true">4152314670148687</td>
+                <td class="py-4 px-4 editable-cell" contenteditable="true">500.00</td>
+                <td class="py-4 px-4 editable-cell" contenteditable="true">4181528326</td>
                 <td class="py-4 px-4 text-center">
                   <button onclick="this.closest('tr').remove()" class="text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded-md transition">
-                    <i data-lucide="trash-2" class="w-5 h-5"></i>
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
                   </button>
                 </td>
               </tr>
               <tr class="hover:bg-slate-50 transition">
-                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">Fátima Godínez</td>
-                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">BBVA BANCOMER</td>
-                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">4152314670148687</td>
-                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">324.95</td>
-                <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">4181528326</td>
+                <td class="py-4 px-4 editable-cell" contenteditable="true">Fátima Godínez</td>
+                <td class="py-4 px-4 editable-cell" contenteditable="true">BBVA BANCOMER</td>
+                <td class="py-4 px-4 editable-cell" contenteditable="true">4152314670148687</td>
+                <td class="py-4 px-4 editable-cell" contenteditable="true">500.00</td>
+                <td class="py-4 px-4 editable-cell" contenteditable="true">4181528326</td>
                 <td class="py-4 px-4 text-center">
                   <button onclick="this.closest('tr').remove()" class="text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded-md transition">
-                    <i data-lucide="trash-2" class="w-5 h-5"></i>
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
                   </button>
                 </td>
               </tr>
@@ -161,6 +177,7 @@
 
   </div>
 
+  <!-- CONFIGURATION MODAL -->
   <div id="configModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 hidden">
     <div class="bg-white rounded-xl shadow-2xl border border-slate-200 w-full max-w-xl p-6 relative max-h-[90vh] overflow-y-auto">
       
@@ -248,28 +265,24 @@
   <script>
     lucide.createIcons();
 
-    // Tab တစ်ခုစီအတွက် သီးသန့် Unique ID သတ်မှတ်ခြင်း (Tab အချင်းချင်း မရောထွေးစေရန်)
     if (!window.name || !window.name.startsWith('tab_session_')) {
       window.name = 'tab_session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
     }
     const currentTabId = window.name;
-
-    // LocalStorage Helper Keys
     const getKey = (key) => `${currentTabId}_${key}`;
 
-    // Elements
     const openConfigBtn = document.getElementById('openConfigBtn');
     const closeConfigBtn = document.getElementById('closeConfigBtn');
     const configModal = document.getElementById('configModal');
 
-    // Logo Control Elements
     const logoFileInput = document.getElementById('logoFileInput');
     const logoUrlInput = document.getElementById('logoUrlInput');
     const resetLogoBtn = document.getElementById('resetLogoBtn');
     const defaultSvgLogo = document.getElementById('defaultSvgLogo');
     const customLogoImg = document.getElementById('customLogoImg');
 
-    // Table Elements
+    const searchInput = document.getElementById('searchInput');
+
     const inputHeaderId = document.getElementById('inputHeaderId');
     const displayHeaderId = document.getElementById('displayHeaderId');
     const addRowBtn = document.getElementById('addRowBtn');
@@ -277,11 +290,9 @@
     const updateAllBtn = document.getElementById('updateAllBtn');
     const tableBody = document.getElementById('tableBody');
 
-    // Modal Display Controls
     openConfigBtn.addEventListener('click', () => configModal.classList.remove('hidden'));
     closeConfigBtn.addEventListener('click', () => configModal.classList.add('hidden'));
 
-    // --- Load Saved Data for THIS TAB ONLY ---
     function loadSavedData() {
       const savedLogoImg = localStorage.getItem(getKey('custom_logo_img'));
       const savedHeaderId = localStorage.getItem(getKey('custom_header_id'));
@@ -289,6 +300,7 @@
       if (savedHeaderId) {
         displayHeaderId.textContent = savedHeaderId;
         inputHeaderId.value = savedHeaderId;
+        searchInput.value = savedHeaderId;
       }
 
       if (savedLogoImg) {
@@ -298,8 +310,6 @@
       }
     }
 
-    // --- Dynamic Logo Controls ---
-    // 1. Upload Local Image File
     logoFileInput.addEventListener('change', (e) => {
       const file = e.target.files[0];
       if (file) {
@@ -315,7 +325,6 @@
       }
     });
 
-    // 2. Image URL Input
     logoUrlInput.addEventListener('input', (e) => {
       const url = e.target.value.trim();
       if (url !== '') {
@@ -330,7 +339,6 @@
       }
     });
 
-    // 3. Reset Default Logo
     resetLogoBtn.addEventListener('click', () => {
       logoFileInput.value = '';
       logoUrlInput.value = '';
@@ -339,10 +347,17 @@
       localStorage.removeItem(getKey('custom_logo_img'));
     });
 
-    // --- Table & ID Sync Controls ---
     inputHeaderId.addEventListener('input', (e) => {
-      const val = e.target.value || '4181528326';
+      const val = e.target.value || '';
       displayHeaderId.textContent = val;
+      searchInput.value = val;
+      localStorage.setItem(getKey('custom_header_id'), val);
+    });
+
+    displayHeaderId.addEventListener('input', (e) => {
+      const val = e.target.textContent.trim();
+      inputHeaderId.value = val;
+      searchInput.value = val;
       localStorage.setItem(getKey('custom_header_id'), val);
     });
 
@@ -356,14 +371,14 @@
       const tr = document.createElement('tr');
       tr.className = 'hover:bg-slate-50 transition';
       tr.innerHTML = `
-        <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">${nombre}</td>
-        <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">${banco}</td>
-        <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">${cuenta}</td>
-        <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">${saldo}</td>
-        <td class="py-4 px-4 text-base font-extrabold text-black editable-cell" contenteditable="true">${memberId}</td>
+        <td class="py-4 px-4 editable-cell" contenteditable="true">${nombre}</td>
+        <td class="py-4 px-4 editable-cell" contenteditable="true">${banco}</td>
+        <td class="py-4 px-4 editable-cell" contenteditable="true">${cuenta}</td>
+        <td class="py-4 px-4 editable-cell" contenteditable="true">${saldo}</td>
+        <td class="py-4 px-4 editable-cell" contenteditable="true">${memberId}</td>
         <td class="py-4 px-4 text-center">
           <button onclick="this.closest('tr').remove()" class="text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded-md transition">
-            <i data-lucide="trash-2" class="w-5 h-5"></i>
+            <i data-lucide="trash-2" class="w-4 h-4"></i>
           </button>
         </td>
       `;
@@ -395,7 +410,6 @@
       tableBody.innerHTML = '';
     });
 
-    // Page Load အချိန်တွင် လက်ရှိ Tab ၏ သီးသန့် memory မှ data ပြန်ဖတ်ခြင်း
     loadSavedData();
   </script>
 </body>
