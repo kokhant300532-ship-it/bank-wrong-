@@ -16,6 +16,14 @@
       background-color: #ffffff;
       border-radius: 4px;
     }
+    /* Table ထဲမှ နံပါတ်စတိုင်အတိုင်း ကွက်တိတူညီအောင် ညှိထားပါသည် */
+    .header-ref-val {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.75rem; /* 12px (text-xs) */
+      font-weight: 600;   /* font-semibold */
+      color: #334155;     /* text-slate-700 */
+      line-height: 1rem;
+    }
   </style>
 </head>
 <body class="bg-slate-100 font-sans text-slate-800 flex flex-col h-screen overflow-hidden">
@@ -116,14 +124,15 @@
     <main class="flex-1 p-8 overflow-y-auto bg-slate-50 flex flex-col items-center">
       <div class="bg-white rounded-xl shadow-md border border-slate-200/80 p-6 w-full max-w-6xl">
         
-        <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
+        <div class="flex justify-between items-start mb-6 pb-4 border-b border-slate-100">
           <div>
             <h2 class="text-lg font-bold text-slate-800">Historial Transaccional</h2>
             <p class="text-xs text-slate-400">Registros financieros y movimientos de cuenta</p>
           </div>
           <div class="text-right">
-            <span class="text-xs font-semibold text-slate-500 block uppercase tracking-wider">HEADER REFERENCE ID</span>
-            <div class="font-simple text-slate-700 text-xl tracking-wide editable-cell px-0.5 py-0.5 rounded" id="displayHeaderId" contenteditable="true">
+            <span class="text-[10px] font-bold text-slate-400 block uppercase tracking-wider mb-0.5">HEADER REFERENCE ID</span>
+            <!-- Table ထဲမှ ID DE MIEMBRO စတိုင်အတိုင်း Color, Font Size, Weight ထပ်တူ ညှိထားပါသည် -->
+            <div class="header-ref-val editable-cell px-1 py-0.5 rounded inline-block" id="displayHeaderId" contenteditable="true">
               4181528326
             </div>
           </div>
@@ -132,7 +141,6 @@
         <div class="overflow-x-auto rounded-lg border border-slate-200">
           <table class="w-full text-left border-collapse">
             <thead>
-              <!-- ခေါင်းစဉ် စာသားများကို ပိုမိုထင်ရှား အနက်ရောင်သန်းစေရန် ပြင်ဆင်ထားပါသည် -->
               <tr class="bg-slate-100/90 text-slate-800 text-xs font-extrabold uppercase tracking-wider border-b-2 border-slate-200">
                 <th class="py-3.5 px-4">NOMBRE</th>
                 <th class="py-3.5 px-4">NOMBRE DEL BANCO</th>
@@ -142,7 +150,6 @@
                 <th class="py-3.5 px-4 text-center">ACCIONES</th>
               </tr>
             </thead>
-            <!-- ဇယားအတွင်းရှိ အချက်အလက်များကို ထင်ရှားစေရန် font-semibold နှင့် text-slate-700 အဖြစ် ပြောင်းလဲထားပါသည် -->
             <tbody id="tableBody" class="divide-y divide-slate-200 text-xs font-semibold text-slate-700">
               <tr class="hover:bg-slate-50 transition">
                 <td class="py-4 px-4 editable-cell" contenteditable="true">Fátima Godínez</td>
